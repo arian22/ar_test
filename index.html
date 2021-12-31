@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test</title>
+    <meta property="og:url" content="https://arian22.github.io/ar_test">
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="TEST">
+    <meta name="apple-mobile-web-app-status-bar" content="#212529">
+    <meta name="theme-color" content="#212529">
+    <link rel="stylesheet" href="style.css">
+    <link href="css/all.css" rel="stylesheet">
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <script src="js/jquery.3.4.1.js"></script>
+</head>
+<body>
+    <div>
+        <nav class="navbar navbar-dark bg-dark">
+            <div class="container-fluid container">
+              <h3 style="color: white; margin: 4px;">It's just a test</h3>
+            </div>
+          </nav>
+    </div>
+
+    <div class="container" style="padding:20px;">
+        
+        <br>
+        <input type="text" minlength="6" autofocus autocomplete="off" onkeyup="create_result();" id="input_text" maxlength="99" class="form-control" placeholder="text">
+                
+        <div style="margin-top: 15px; padding-left: 20px;">
+           <h4 id="result"></4>
+        </div>
+        
+
+    <br><br>
+
+
+    </div>
+    <script src="js/base.js"></script>
+    <script>
+        function create_result(){
+            $("#result").html("");
+            let text = get_text("input_text");
+            if (text.length>=6){$("#result").html(get_result(text));}
+        }
+        
+        function get_result(text){
+            let ss = 0;
+            let j = 7 ;
+            for (let i=0;i<text.length;i++){
+                ss += j * parseInt(get_vazn(text.charAt(i)));
+                if(j==1){j=7}else if(j==3){j=1}else if(j==7){j=3}
+            }
+            ss = ss.toString();
+            return ss.charAt(ss.length-1);
+        }
+        function get_vazn(x){
+            let obj = {'0': 0, '1': 1, '2': 2, '3': 3, '4': 4, '5': 5, '6': 6, '7': 7, '8': 8, '9': 9,
+                    '<': 0, 'a': 10, 'b': 11, 'c': 12, 'd':13, 'e':14, 'f':15, 'g':16, 'h':17,
+                    'i': 18, 'j': 19, 'k': 20, 'l':21, 'm':22, 'n':23, 'o':24, 'p':25, 'q':26, 
+                    'r': 27, 's': 28, 't': 29, 'u':30, 'v':31, 'w':32, 'x':33, 'y':34, 'z':35
+                    };
+            return obj[x.toString().toLowerCase()]
+        }
+
+    </script>
+</body>
+</html>
